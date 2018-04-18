@@ -158,4 +158,25 @@ class Empresa extends AppModel
     }
 
 
+    public $_consultas = array(
+        'listado' => array(
+            'fields' => array(
+                'Empresa.*',
+            ),
+            'order' => array(
+                'Empresa.nombre' => 'desc',
+            )
+        ),
+    );
+
+    public function consulta($index){
+        return $this->_consultas[$index];
+    }
+
+    public function condicion_tipo($tipo_id){
+        $condiciones[] = array('Empresa.tipo' => $tipo_id);
+        return $condiciones;
+    }
+
+
 }

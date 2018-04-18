@@ -92,4 +92,23 @@ class AppController extends Controller {
         $this->Auth->loginAction = array('admin' => false, 'controller' => 'usuarios', 'action' => 'login');
         $this->Auth->loginRedirect = array('controller' => 'usuarios', 'action' => 'loginRedirect');
     }
+
+    public function paginar($param_consulta, $condiciones, $limit = 5, $modelo = null) {
+        $this->Paginator = $this->Components->load(
+            'Paginator',
+            Hash::merge(
+                $param_consulta,
+                array(
+                    'limit' => $limit,
+                )
+            )
+        );
+        if(isset($modelo)){
+            return $this->Paginator->paginate($modelo, $condiciones);
+        }else{
+            return $this->Paginator->paginate($condiciones);
+        }
+    }
+
+    
 }

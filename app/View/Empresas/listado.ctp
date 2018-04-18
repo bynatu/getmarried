@@ -45,7 +45,7 @@ foreach($empresas as $empresa):?>
 
     <?php if($numbers) { ?>
         <div class="col-xs-12">
-        <div class="m-top-1 col-md-5 col-md-offset-5">
+        <div class="m-top-1">
         <nav>
             <ul class="paginar text-center">
                 <?php echo $this->Paginator->prev(__('<'), array('tag' => 'li'));?>

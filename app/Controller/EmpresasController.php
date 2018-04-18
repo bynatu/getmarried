@@ -23,13 +23,6 @@ Class EmpresasController extends AppController{
     }
 
     /**
-     * INTRODUCIMOS EL COMPONENTE DEL PAGINADOR
-     */
-    public $components = array('Paginator');
-
-    public $paginate = array('limit' => 4);
-
-    /**
      * FUNCION INDEX POR DEFECTO DE LA EMPRESA
      */
     public function index(){
@@ -154,10 +147,13 @@ Class EmpresasController extends AppController{
      * FUNCION PARA VER UN LISTADO DE LAS EMPRESAS SEGUN SU TIPO
      */
     function listado($tipo_id){
-        //MODIFICAMOS LAS OPCIONES PARA PODER PAGINAR LA PAGINA
-        $this->Paginator->settings = $this->paginate;
         //MANDAMOS LOS DATOS DE LA EMPRESA CON LA CONDICION DEL TIPO DE ID
-        $empresas = $this->Paginator->paginate(array('tipo' => $tipo_id));
+        $empresas = $this->paginar(
+            $this->Empresa->consulta('listado'),
+            $this->Empresa->condicion_tipo($tipo_id),
+            7
+        );
+
         //OBTENEMOS EL TIPO DE EMPRESA PARA MOSTRAR EL TITULO
         $tipo = $this->Tipo->findById($tipo_id);
         //MANDAMOS LOS DATOS A LA VISTA

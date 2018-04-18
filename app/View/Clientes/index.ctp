@@ -11,19 +11,49 @@
                 <p> <i class="fas fa-address-card"></i><span class="m-left-1"> <?php echo $cliente['Cliente']['direccion'] ?> </span></p>
                 <p> <i class="fas fa-phone-volume"></i><span class="m-left-1"> <?php echo $cliente['Cliente']['telefono']  ?> </span></p>
                 <p> <i class="fas fa-envelope"></i><span class="m-left-1"> <?php echo $cliente['Cliente']['email']  ?> </span></p>
+                <?php
+                    echo $this->Html->link(
+                        '<i class="fas fa-book"></i> Mi Perfil',
+                        array(
+                            'controller' => 'clientes',
+                            'action' => 'misdatos',
+                        ),
+                        array(
+                            'escape'=>false
+                        )
+                    ) 
+                ?>
             </div>
-            <?php
-                echo $this->Html->link(
-                    '<i class="fas fa-pencil-alt"></i> Mi Perfil',
-                    array(
-                        'controller' => 'clientes',
-                        'action' => 'misdatos',
-                    ),
-                    array(
-                        'escape'=>false
-                    )
-                ) 
-            ?>
+            <div class="m-top-1">
+                <?php
+                    echo $this->Html->link(
+                        '<i class="fas fa-plus-circle"></i> Crear nueva solicitud',
+                        array(
+                            'controller' => 'clientes',
+                            'action' => 'misdatos',
+                        ),
+                        array(
+                            'escape'=>false,
+                            'class' => 'btn btn-default sinfondo fondohover bordecolor boton'
+                        )
+                    ) 
+                ?>
+            </div>
+            <div class="m-top-1">
+                <?php
+                    echo $this->Html->link(
+                        '<i class="fas fa-search"></i> Buscar empresas',
+                        array(
+                            'controller' => 'clientes',
+                            'action' => 'misdatos',
+                        ),
+                        array(
+                            'escape'=>false,
+                            'class' => 'btn btn-default sinfondo fondohover bordecolor boton'
+                        )
+                    ) 
+                ?>
+            </div>
         </div>
           <!--mostramos las solicitudes de un usuario, por defecto cargaran las 3 primeras-->
         <div id="solicitudes" class="col-xs-12 col-sm-offset-1 col-sm-5">
@@ -43,11 +73,27 @@
                 ?>
                 <div class="m-1"> 
                         <p> <?php echo $solicitud['Solicitud']['descripcion'];?></p> 
-                        <p>
+                        <div>
                             <i class="m-left-1 fas fa-map-marker-alt"></i><span class="m-left-1"> <?php echo $solicitud['Solicitud']['ubicacion'];?> </span> 
                             <i class="m-left-1 fas fa-euro-sign"></i><span class="m-left-1"> <?php echo $solicitud['Solicitud']['precio'];?> </span> 
                             <i class="m-left-1 fas fa-calendar-alt"></i><span class="m-left-1"> <?php echo $solicitud['Solicitud']['fecha'];?> </span> 
-                        </p>
+                        </div>
+                        <div class="ta-right">
+                            <?php
+                                echo $this->html->link(
+                                    '<i class="fas fa-sign-in-alt color-principal f-size-2"></i>',
+                                    array(
+                                        'controller' => 'solicitudes',
+                                        'action' => 'detalles',
+                                        $solicitud['Solicitud']['id']
+                                    ),
+                                    array(
+                                        'escape' => false
+                                    )
+                                )
+                            ?>
+                            
+                        </div>
                 </div>
             </div>
             <?php endforeach;?>

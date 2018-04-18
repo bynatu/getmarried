@@ -20,15 +20,6 @@
     echo $this->fetch('meta');
     echo $this->fetch('css');
     echo $this->fetch('script');
-    $user = $this->Session->read('Auth.User.Usuario.email');
-    $user_rol = $this->Session->read('Auth.User.Usuario.rol');
-    if ($user_rol == 2) {
-        $controller = "empresas";
-    } elseif ($user_rol == 3) {
-        $controller = "clientes";
-    } else {
-        $controller = "admin";
-    }
     ?>
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
             integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
@@ -37,98 +28,7 @@
 <body>
 <div id="container">
     <header>
-        <nav class="navbar navbar-default" role="navigation">
-            <!-- El logotipo y el icono que despliega el menú se agrupan
-                 para mostrarlos mejor en los dispositivos móviles -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target=".navbar-ex1-collapse">
-                    <!--<span class="sr-only">Desplegar navegación</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>-->
-                    <i class="fas fa-bars"></i>
-                </button>
-                <?php
-                echo $this->Html->link(
-                    $this->Html->image("logo.png", array("alt" => "inicio", 'class' => 'icono')),
-                    array(
-                        'controller' => 'Usuarios',
-                        'action' => 'login',
-                    ),
-                    array(
-                        'escape' => false,
-                    )
-                );
-                ?>
-            </div>
-
-            <!-- Agrupar los enlaces de navegación, los formularios y cualquier
-                 otro elemento que se pueda ocultar al minimizar la barra -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <?php if (is_null($user)): ?>
-                        <li>
-                            <?php echo $this->Html->link(
-                                'Iniciar Sesion',
-                                array(
-                                    'controller' => 'Usuarios',
-                                    'action' => 'login',
-                                )
-                            ) ?>
-                        </li>
-                    <?php else: ?>
-                        <li class="visible-xs">
-                        <?php
-                                    echo $this->Html->link(
-                                        'Mis datos',
-                                        array(
-                                            'controller' => $controller,
-                                            'action' => 'misdatos',
-                                        )
-                                    ) ?>
-                        </li>
-                        <li class="visible-xs">
-                            <?php echo $this->Html->link(
-                                'Cerrar Sesion',
-                                array(
-                                    'controller' => 'usuarios',
-                                    'action' => 'logout',
-                                )
-                            ) ?>
-                        </li>
-                        <li class="dropdown hidden-xs">
-                            <span><?php echo $user ?></span>
-                            <a id="dropdownmenu" href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <?php
-                                    echo $this->Html->link(
-                                        'Mis datos',
-                                        array(
-                                            'controller' => $controller,
-                                            'action' => 'misdatos',
-                                        )
-                                    ) ?>
-                                </li>
-                                <li>
-                                    <?php echo $this->Html->link(
-                                        'Cerrar Sesion',
-                                        array(
-                                            'controller' => 'usuarios',
-                                            'action' => 'logout',
-                                        )
-                                    ) ?>
-                                </li>
-                            </ul>
-                        </li>
-                    <?php endif; ?>
-                </ul>
-            </div>
-        </nav>
-
+        <?php echo $this->element('Comun/menu'); ?>
     </header>
     <div id="content">
 
