@@ -1,9 +1,9 @@
 <?php 
      $user = $this->Session->read('Auth.User.Usuario.email');
      $user_rol = $this->Session->read('Auth.User.Usuario.rol');
-     if ($user_rol == 2) {
+     if ($user_rol == ConstantesRoles::EMPRESA ) {
          $controller = "empresas";
-     } elseif ($user_rol == 3) {
+     } elseif ($user_rol ==  ConstantesRoles::CLIENTE) {
          $controller = "clientes";
      } else {
          $controller = "admin";
@@ -49,14 +49,14 @@
                             ) ?>
                         </li>
                     <?php else: ?>
-                        <?php if($user_rol==3):?>
+                        <?php if($user_rol== ConstantesRoles::CLIENTE):?>
                             <li class="visible-xs float-left ancho100 ta-left">
                             <?php
                                 echo $this->Html->link(
                                     '<i class="fas fa-plus-circle"></i>  Crear nueva solicitud ',
                                     array(
                                         'controller' => 'solicitudes',
-                                        'action' => 'nuevo',
+                                        'action' => 'nueva',
                                     ),
                                     array(
                                         'escape'=>false

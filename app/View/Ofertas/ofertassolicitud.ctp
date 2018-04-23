@@ -1,3 +1,6 @@
+<?php if ($this->Session->read('Auth.User.Usuario.rol') == ConstantesRoles::CLIENTE): ?>
+<!--añadimos el script-->
+<?php echo $this->Html->script('../js/ofertassolicitud.js'); ?>
 <div class="hidden-xs col-sm-10 col-sm-offset-1">
     <table id="oferta" class="table table-sm">
     <thead>
@@ -18,7 +21,25 @@
         <td  scope="row"> <?php echo($oferta['Empresa']['nombre']); ?> </td>
         <td> <?php echo($oferta['Oferta']['prestacion']); ?> </td>
         <td> <?php echo($oferta['Oferta']['presupuesto']); ?> </td>
-        <td> <i class="far fa-check-circle aceptado"></i> <i class="fas fa-ban alerta m-left-1"></i> </td>
+        <td> 
+        <div class="aceptado" data-url="<?php
+            echo Router::url(array(
+                'controller' => 'ofertas',
+                'action' => 'aceptar',
+                $oferta['Oferta']['id']
+            )); ?>"> 
+            <i class="far fa-check-circle aceptado" ></i> 
+        </div>
+        <div class="alerta" data-url="<?php
+            echo Router::url(array(
+                'controller' => 'ofertas',
+                'action' => 'cancelar',
+                $oferta['Oferta']['id']
+            )); 
+            ?>"> 
+            <i class="fas fa-ban alerta m-left-1"></i> 
+        </div>
+        </td>
     </tr>
     <?php endforeach; ?>
     </tbody>
@@ -31,7 +52,27 @@
         <div class="fondo color-blanco col-xs-12"><?php echo($oferta['Empresa']['nombre']); ?> </div>
         <div class="col-xs-12"><?php echo($oferta['Oferta']['prestacion']); ?> </div>
         <div class="col-xs-8 negrita"> <?php echo($oferta['Oferta']['presupuesto']."€"); ?></div>
-        <div class="col-xs-4"> <i class="far fa-check-circle aceptado"></i> <i class="fas fa-ban alerta m-left-1"></i></div>
+        <div class="col-xs-4"> 
+            <div class="aceptado" data-url="<?php
+                    echo Router::url(array(
+                        'controller' => 'ofertas',
+                        'action' => 'aceptar',
+                        $oferta['Oferta']['id']
+                    )); 
+                ?>"> 
+                <i class="far fa-check-circle aceptado">
+                </i> 
+            </div>
+            <div class="alerta" data-url="<?php
+                echo Router::url(array(
+                    'controller' => 'ofertas',
+                    'action' => 'cancelar',
+                    $oferta['Oferta']['id']
+                )) 
+                ?>"> 
+                <i class="fas fa-ban alerta m-left-1"></i>
+            </div> 
+        </div>
     </div>
 <?php endforeach; ?>
 </div>
@@ -66,3 +107,4 @@
         </div>
     </div>
     <?php } ?>
+<?php endif; ?>

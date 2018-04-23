@@ -311,9 +311,11 @@ a.noenlace{
 }
 .alerta{
     color:red;
+    display: inline-block;
 }
 .aceptado{
     color:green;
+    display: inline-block;
 }
 .medio{
     width:30em;
@@ -375,5 +377,9 @@ a.noenlace{
 
 .ancho100{
     width: 100%;
+}
+
+.nofloat{
+    clear:both;
 }
 

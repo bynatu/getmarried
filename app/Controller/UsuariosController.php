@@ -27,7 +27,7 @@ public function login() {
             $this->redirect($this->Auth->redirectUrl());
         }else{
             //SINO  LOS DATOS NO COINCIDEN
-            $this->Session->setFlashError('Usuario o contraseña no validos');
+            $this->Flash->error( ConstantesMensaje::CONTRASEÑAS_MAL);
         }
     }
  }
@@ -52,10 +52,10 @@ public function add(){
     switch($userinfo['Usuario']['rol'])
     {
         //case '3': $this->redirect(array ( 'controller' => 'clientes', 'action' => 'index'),null,true);
-        case '3': $this->redirect(array ( 'controller' => 'clientes', 'action' => 'index'));
+        case ConstantesRoles::CLIENTE: $this->redirect(array ( 'controller' => 'clientes', 'action' => 'index'));
         break;
                  
-        case '2': $this->redirect(array ( 'controller' => 'empresas', 'action' => 'index'));
+        case ConstantesRoles::EMPRESA: $this->redirect(array ( 'controller' => 'empresas', 'action' => 'index'));
         break;
 
         case '1': $this->redirect(array ( 'controller' => 'admins', 'action' => 'index'));

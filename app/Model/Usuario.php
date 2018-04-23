@@ -71,7 +71,6 @@ class Usuario extends AppModel {
         if ($tmp = $this->save($usuario, $fields)) {
             return $tmp;
         }
-        debug($tmp);
         return false;
 
         }

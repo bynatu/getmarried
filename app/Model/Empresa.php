@@ -78,6 +78,7 @@ class Empresa extends AppModel
         $fields = array(
             'Empresa' => array(
                 'email',
+                'NIF',                
                 'nombre',
                 'tipo',
                 'www',
@@ -104,6 +105,13 @@ class Empresa extends AppModel
      * Funcion para validar los datos antes de realizar crear o editar los registros
      */
     public $validate = array(
+        'NIF' => array(
+            'notBlank' => array(
+                'rule' => array('notBlank'),
+                'required' => true,
+                'message' => 'El dni es obligatorio'
+            ),
+        ),
         'nombre' => array(
             'notBlank' => array(
                 'rule' => array('notBlank'),

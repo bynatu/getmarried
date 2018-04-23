@@ -35,6 +35,7 @@ class Cliente extends AppModel
         $fields = array(
             'Cliente' => array(
                 'email',
+                'DNI',
                 'nombre',
                 'apellidos',
                 'fnto',
@@ -92,6 +93,13 @@ class Cliente extends AppModel
      * Funcion para validar los datos antes de realizar crear o editar los registros
      */
     public $validate = array(
+        'DNI' => array(
+            'notBlank' => array(
+                'rule' => array('notBlank'),
+                'required' => true,
+                'message' => 'El dni es obligatorio'
+            ),
+        ),
         'nombre' => array(
             'notBlank' => array(
                 'rule' => array('notBlank'),

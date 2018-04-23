@@ -24,6 +24,15 @@
         </div>
         <div class="col-md-offset-3 col-md-6">
             <?php echo $this->Form->input(
+                    'Cliente.DNI',
+                    array(
+                        'type' => 'text',
+                        'name' => 'DNI',
+                        'label' => 'DNI',
+                        'class' => "form-control input-lg"
+                    )
+                ) ?>
+            <?php echo $this->Form->input(
                 'Cliente.nombre',
                 array(
                     'type' => 'text',
@@ -123,7 +132,7 @@
                 )
             ) ?>
         </div>
-        <div class="col-xs-offset-3 col-xs-6 text-center">
+        <div class="m-0-auto">
             <button type="submit" class="btn btn-success btn-lg btnaccion">REGISTRARSE </button>
         </div>
 

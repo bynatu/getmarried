@@ -34,6 +34,7 @@ Class EmpresasController extends AppController{
     public function registro(){
         //COMPROBAMOS SI LOS DATOS SON MANDADOS POR POST
         if ($this->request->is('post')) {
+           if(!empty($this->request->data('g-recaptcha-response'))){
             //ARRAY DE USUARIO
             $usuario = array();
             //ARRAY DE EMPRESA
@@ -41,7 +42,7 @@ Class EmpresasController extends AppController{
             //OBTENEMOS LOS DATOS DEL USUARIO
             $usuario['email'] = $this->request->data['email'];
             $usuario['password'] = $this->request->data['password'];
-            $usuario['rol'] = 2;
+            $usuario['rol'] = ConstantesRoles::EMPRESA;
             //OBTENEMOS LOS DATOS DE LA EMPRESA
             foreach ($this->request->data as $key => $value) {
                 if ($key != 'password') {
@@ -58,15 +59,16 @@ Class EmpresasController extends AppController{
             //GUARDAMOS LOS DOS REGISTROS
             if ($this->Usuario->nuevo($usuario) && $this->Empresa->nuevo($empresa)) {
                 //MOSTRAMOS MENSAJE DE REGISTRO
-                $this->Flash->success('SE HA REGISTRADO EXISTOSAMENTE');
+                $this->Flash->success( ConstantesMensaje::REGISTRO_BIEN);
                 //REDIRECCIONAMOS AL LOGIN
                 $this->redirect(array(
                     'controller' => 'usuarios',
                     'action' => 'login'
                 ));
             } else {
-                $this->Flash->error('SE HA PRODUCIDO UN ERROR, INTENTELO DE NUEVO');
+                $this->Flash->error( ConstantesMensaje::REGISTRO_MAL);
             }
+        }
         }
         //SI NO TENEMOS DATOS POR POST ES PORQUE ESTAMOS INTENTANDO VISUALIZAR EL FORMULARIO DE REGISTRO
         //LE MANDAMOS LAS OPCIONES DEL TIPO DE EMPRESA
@@ -118,13 +120,13 @@ Class EmpresasController extends AppController{
             //EDITAMOS EL REGISTRO
             if ($this->Empresa->edit($this->request->data)) {
                 //MOSTRAMOS EL MENSAJE
-                $this->Flash->success('SUS DATOS HAN SIDO ACTUALIZADOS');
+                $this->Flash->success( ConstantesMensaje::EDITAR_BIEN);
                 //REDIRECCIONAMOS A SU PAGINA PRICIPAL
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Flash->error('ERROR AL EDITAR LOS DATOS');
+                $this->Flash->error( ConstantesMensaje::EDITAR_MAL);
             }
         }
 

@@ -54,7 +54,7 @@ Class ClientesController extends AppController{
             //OBTENEMOS LOS DATOS DEL USUARIO
             $usuario['email'] = $this->request->data['email'];
             $usuario['password'] = $this->request->data['password'];
-            $usuario['rol'] = 3;
+            $usuario['rol'] = ConstantesRoles::CLIENTE;
             //OBTNEMOS LOS DATOS DEL CLIENTE
             foreach ($this->request->data as $key => $value) {
                 if ($key != 'password') {
@@ -64,14 +64,14 @@ Class ClientesController extends AppController{
             //DAMOS DE ALTA AMBOS REGISTROS
             if ($this->Usuario->nuevo($usuario) && $this->Cliente->nuevo($cliente)) {
                 //MOSTRAMOS MENSAJE
-                $this->Flash->success('SE HA REGISTRADO EXISTOSAMENTE');
+                $this->Flash->success(ConstantesMensaje::REGISTRO_BIEN);
                 //REDIRECCIOAMOS A LA PAGINA DE LOGIN
                 $this->redirect(array(
                     'controller' => 'usuarios',
                     'action' => 'login'
                 ));
             } else {
-                $this->Flash->error('SE HA PRODUCIDO UN ERROR INTENTELO DE NUEVO MAS TARDE');
+                $this->Flash->error( ConstantesMensaje::REGISTRO_MAL);
             }
         }
     }
@@ -110,13 +110,13 @@ Class ClientesController extends AppController{
             //MANDAMOS LOS DATOS RECIBIDOS DEL FORMULARIO
             if ($this->Cliente->edit($this->request->data)) {
                 //MOSTRAMOS MENSAJE
-                $this->Flash->success('SUS DATOS HAN SIDO ACTUALIZADOS');
+                $this->Flash->success(ConstantesMensaje::EDITAR_BIEN);
                 //REDIRECIONAMOS A LA PAGINA PRINCIPAL DEL CLIENTE
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Flash->error('ERROR AL EDITAR LOS DATOS');
+                $this->Flash->error( ConstantesMensaje::EDITAR_MAL);
             }
         }
 

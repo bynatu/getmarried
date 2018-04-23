@@ -1,3 +1,4 @@
+<?php if ($this->Session->read('Auth.User.Usuario.rol') == ConstantesRoles::EMPRESA): ?>  
   <!--Añdimos el script del mapa y el script de la api de google maps-->
 <?php echo $this->Html->script('../js/gmap.js'); ?>
 <?php echo $this->Html->script('https://maps.googleapis.com/maps/api/js?key=AIzaSyAlooq0GVC8KyzH3fuFISBiF8yGOhyepMk'); ?>
@@ -10,6 +11,7 @@
             <li><span>Sitio Web: </span>
                 <span> <a href="<?php echo($datos['Empresa']['www']) ?> " target="_blank"> <?php echo($datos['Empresa']['www']) ?> </a></span>
             </li>
+            <li><span>NIF: </span> <span><?php echo($datos['Empresa']['NIF']) ?></span></li>
             <li><span>Telefono: </span> <span> <?php echo($datos['Empresa']['telefono']) ?></span></li>
             <li><span>Correo Electronico: </span> <span> <?php echo($datos['Empresa']['email']) ?> </span></li>
             <li><span>Dirección: </span> <span><?php echo($datos['Empresa']['direccion'] ." Nº ".$datos['Empresa']['numero']." ".$datos['Empresa']['piso']) ?> </span></li>
@@ -54,4 +56,5 @@
          data-name="<?php echo($datos['Empresa']['nombre']) ?>">
     </div>
 </div>
+<?php endif; ?>
 

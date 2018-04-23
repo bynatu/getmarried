@@ -1,3 +1,5 @@
+
+<?php if ($this->Session->read('Auth.User.Usuario.rol') == ConstantesRoles::EMPRESA): ?>
 <div class="row">
     <div class="col-md-12 text-center">
         <?php echo $this->Form->create() ?>
@@ -7,6 +9,15 @@
                 'Empresa.id',
                 array(
                     'name' => 'id',
+                )
+            ) ?>
+              <?php echo $this->Form->input(
+                'Empresa.NIF',
+                array(
+                    'type' => 'text',
+                    'name' => 'NIF',
+                    'label' => 'NIF',
+                    'class' => "form-control input-lg"
                 )
             ) ?>
             <?php echo $this->Form->input(
@@ -107,3 +118,4 @@
         <?php echo $this->Form->end() ?>
     </div>
 </div>
+<?php endif; ?>

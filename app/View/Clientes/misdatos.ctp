@@ -2,6 +2,7 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
         <h1 class="titulo"> <?php echo($datos['Cliente']['nombre'] . " " . $datos['Cliente']['apellidos']) ?></h1>
         <ul id="perfil-data">
+            <li><span>DNI: </span> <span> <?php echo($datos['Cliente']['DNI']) ?></span></li>
             <li><span>Fecha Nacimiento: </span> <span> <?php echo($datos['Cliente']['f_nacimiento']) ?></span></li>
             <li><span>Telefono: </span> <span> <?php echo($datos['Cliente']['telefono']) ?></span></li>
             <li><span>Correo Electronico: </span> <span> <?php echo($datos['Cliente']['email']) ?> </span></li>
@@ -42,7 +43,6 @@
                     'escape' => false,
                 )
             );
-            echo $user;
             ?>
         </div>
 

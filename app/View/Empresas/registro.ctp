@@ -23,6 +23,15 @@
         </div>
         <div class="col-md-offset-3 col-md-6">
             <?php echo $this->Form->input(
+                'Empresa.NIF',
+                array(
+                    'type' => 'text',
+                    'name' => 'NIF',
+                    'label' => 'NIF',
+                    'class' => "form-control input-lg"
+                )
+            ) ?>
+            <?php echo $this->Form->input(
                 'Empresa.nombre',
                 array(
                     'type' => 'text',
@@ -110,9 +119,7 @@
                     'class' => "form-control input-lg"
                 )
             ) ?>
-
-
-
+                <div class="g-recaptcha" data-sitekey="6LfuzlQUAAAAAKEuYsqYvzBaUKpiDnJ9v2mCjbVg"></div>
 
         </div>
         <div class="col-xs-offset-3 col-xs-6 text-center">

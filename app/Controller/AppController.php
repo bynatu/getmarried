@@ -32,12 +32,16 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+    /*HELPERS PARA DESARROLLO RAPIDO DE HTML DESDE CAKEPHP*/ 
     public $helpers = array(
         'Html',
         'Form',
         'Flash',
     );
     
+    /**
+     * COMPONENTES QUE VA A UTILIZAR LA APLICACION
+     */
     public $components = array(
         'Session' => array('className' => 'Session'),
         'DebugKit.Toolbar',
@@ -77,15 +81,23 @@ class AppController extends Controller {
         ),
     );
 
+    /**
+     * FUNCION PARA INDICAR EL INICIO DE UNA TRANSACCION SQL
+     */
     public function begin(){
         $this->{$this->modelClass}->getDataSource()->begin();
     }
 
+    /**
+     * FUNCION PARA CONFIRMAR LOS CAMBIOS DE LA TRANSACION SQL
+     */
     public function commit(){
         $this->{$this->modelClass}->getDataSource()->commit();
     }
     
-
+    /**
+     * FUNCION PARA AL INICIAR SESION COMPORBAR LOS CAMPOS QUE QUE SE HAN DE VALIDAR
+     */
     function beforeFilter() {
         $this->Auth->userModel = 'Usuario';
         $this->Auth->fields = array('username' => 'email', 'password' => 'password');
@@ -93,6 +105,9 @@ class AppController extends Controller {
         $this->Auth->loginRedirect = array('controller' => 'usuarios', 'action' => 'loginRedirect');
     }
 
+    /**
+     * FUNCION PARA MEJORAR LA PAGINACION DEL COMPONENTE PAGINATOR
+     */
     public function paginar($param_consulta, $condiciones, $limit = 5, $modelo = null) {
         $this->Paginator = $this->Components->load(
             'Paginator',

@@ -1,3 +1,5 @@
+<!--comprobamos el rol del usuario logueado-->
+<?php if($this->Session->read('Auth.User.Usuario.rol')==ConstantesRoles::CLIENTE):?>
 <!--formulario para editar los datos de los clientes-->
 <div class="row">
     <div class="col-md-12 text-center">
@@ -10,6 +12,15 @@
                     'name' => 'id',
                 )
             ) ?>
+             <?php echo $this->Form->input(
+                    'Cliente.DNI',
+                    array(
+                        'type' => 'text',
+                        'name' => 'DNI',
+                        'label' => 'DNI',
+                        'class' => "form-control input-lg"
+                    )
+                ) ?>
             <?php echo $this->Form->input(
                 'Cliente.nombre',
                 array(
@@ -119,3 +130,4 @@
         <?php echo $this->Form->end() ?>
     </div>
 </div>
+<?php endif; ?>

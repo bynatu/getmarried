@@ -2,6 +2,41 @@
 
 class Solicitud extends AppModel {
     public $useTable = 'solicitudes'; 
+
+
+    /**
+     * Funcion para validar los datos antes de realizar crear o editar los registros
+     */
+    public $validate = array(
+        'descripcion' => array(
+            'notBlank' => array(
+                'rule' => array('notBlank'),
+                'required' => true,
+                'message' => 'La descripcion es obligatoria'
+            ),
+        ),
+        'ubicacion' => array(
+            'notBlank' => array(
+                'rule' => array('notBlank'),
+                'required' => true,
+                'message' => 'La ubicacion es obligatoria'
+            ),
+        ),
+        'fecha' => array(
+            'notBlank' => array(
+                'rule' => array('notBlank'),
+                'required' => true,
+                'message' => 'La fecha es obligatoria'
+            ),
+        ),
+        'precio' => array(
+            'notBlank' => array(
+                'rule' => array('notBlank'),
+                'required' => true,
+                'message' => 'El precio es obligatorio'
+            ),
+        ),
+    );
     
     /**
      * funcion para onbtener las solicitudes de un cliente
@@ -26,6 +61,7 @@ class Solicitud extends AppModel {
                 'Solicitud.*',
                 'Tipo.nombre'
             ), 
+            'order' => array('Solicitud.fecha_creacion'=>'desc')
             )
         ); 
     }
@@ -57,6 +93,17 @@ class Solicitud extends AppModel {
             ), 
             )
         ); 
+    }
+
+    public function aceptarOferta($oferta){
+        $fields = array(
+            'Solicitud'=>array(
+                'id',
+                'precio',
+                'aceptado',
+            )
+            );
+        $this->save($oferta,$fields);
     }
 
 

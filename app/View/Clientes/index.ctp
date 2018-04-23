@@ -1,7 +1,7 @@
 <!--añadimos el script-->
 <?php echo $this->Html->script('../js/versolicitudes.js'); ?>
 <!--comprobamos el rol del usuario logueado-->
-<?php if($this->Session->read('Auth.User.Usuario.rol')==3):?>
+<?php if($this->Session->read('Auth.User.Usuario.rol')==ConstantesRoles::CLIENTE):?>
     <div class="row">
         <!--mostramos los datos del usuario solo en version movil-->
         <div class= "hidden-xs col-sm-offset-1 col-sm-4">
@@ -29,8 +29,8 @@
                     echo $this->Html->link(
                         '<i class="fas fa-plus-circle"></i> Crear nueva solicitud',
                         array(
-                            'controller' => 'clientes',
-                            'action' => 'misdatos',
+                            'controller' => 'solicitudes',
+                            'action' => 'nueva',
                         ),
                         array(
                             'escape'=>false,
@@ -73,11 +73,18 @@
                 ?>
                 <div class="m-1"> 
                         <p> <?php echo $solicitud['Solicitud']['descripcion'];?></p> 
-                        <div>
-                            <i class="m-left-1 fas fa-map-marker-alt"></i><span class="m-left-1"> <?php echo $solicitud['Solicitud']['ubicacion'];?> </span> 
-                            <i class="m-left-1 fas fa-euro-sign"></i><span class="m-left-1"> <?php echo $solicitud['Solicitud']['precio'];?> </span> 
-                            <i class="m-left-1 fas fa-calendar-alt"></i><span class="m-left-1"> <?php echo $solicitud['Solicitud']['fecha'];?> </span> 
-                        </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <i class="m-left-1 fas fa-map-marker-alt"></i>
+                                <span> <?php echo $solicitud['Solicitud']['ubicacion'];?> </span> 
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <i class="m-left-1 fas fa-euro-sign"></i>
+                                <span> <?php echo $solicitud['Solicitud']['precio'];?> </span> 
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <i class="m-left-1 fas fa-calendar-alt">
+                                </i><span> <?php echo $solicitud['Solicitud']['fecha'];?> </span> 
+                            </div>
                         <div class="ta-right">
                             <?php
                                 echo $this->html->link(
@@ -97,10 +104,12 @@
                 </div>
             </div>
             <?php endforeach;?>
-            <!--boton que nos permitira ver el resto de solicitudes realizadas-->
-            <div id="ver_mas_menos" class="f-right btn btn-default"> 
-                <i class="fas fa-arrow-circle-down"></i> VER MAS
-            </div>
+            <?php if(count($solicitudes) > ConstantesMinSolicitudes::TAMANO):?>
+                <!--boton que nos permitira ver el resto de solicitudes realizadas-->
+                <div id="ver_mas_menos" class="f-right btn btn-default"> 
+                    <i class="fas fa-arrow-circle-down"></i> VER MAS
+                </div>
+            <?php endif;?>
         </div>
     </div>       
 <?php else:?>

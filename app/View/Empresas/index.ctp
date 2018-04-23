@@ -1,4 +1,4 @@
-<?php if ($this->Session->read('Auth.User.Usuario.rol') == 2): ?>
+<?php if ($this->Session->read('Auth.User.Usuario.rol') == ConstantesRoles::EMPRESA): ?>
     <h1>BIENVENIDA EMPRESA</h1>
 
     <?php
