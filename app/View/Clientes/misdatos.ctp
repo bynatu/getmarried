@@ -1,5 +1,25 @@
 <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <div class="col-xs-12 col-sm-4 ta-center">
+        <?php
+        if (empty($image)) {
+            echo $this->Html->image("cliente.png", array("alt" => "Registro Cliente", 'class' => 'logo'));
+        } else {
+            echo $this->Html->image("../".$image['Image']['nombre'], array("alt" => "Registro Cliente", 'class' => 'logo'));
+        } ?>
+        <?php
+        echo $this->Html->link(
+            '<i class="far fa-images"></i>',
+            array(
+                'controller' => 'images',
+                'action' => 'nuevo',
+            ),
+            array(
+                'class' => 'm-1 noenlace editimage',
+                'escape' => false,
+            )
+        ); ?>
+    </div>
+    <div class="col-xs-12 col-sm-6">
         <h1 class="titulo"> <?php echo($datos['Cliente']['nombre'] . " " . $datos['Cliente']['apellidos']) ?></h1>
         <ul id="perfil-data">
             <li><span>DNI: </span> <span> <?php echo($datos['Cliente']['DNI']) ?></span></li>
@@ -16,14 +36,13 @@
         <div class="col-xs-12 col-md-6">
             <?php
             echo $this->Html->link(
-                '<i class="glyphicon glyphicon-user"></i>' . ' CAMBIAR EMAIL   /   ' . '<i class="glyphicon glyphicon-lock"></i>' . ' CONTRASEÑA',
+                '<i class="glyphicon glyphicon-user"></i>' . ' CAMBIAR EMAIL  /' . ' CONTRASEÑA',
                 array(
                     'controller' => 'usuarios',
                     'action' => 'editar',
-                    $datos['Cliente']['email']
                 ),
                 array(
-                    'class' => 'btn btn-warning',
+                    'class' => 'btn btn-warning ancho100',
                     'escape' => false,
                 )
             )
@@ -39,13 +58,12 @@
                     $datos['Cliente']['id']
                 ),
                 array(
-                    'class' => 'btn btn-warning',
+                    'class' => 'btn btn-warning ancho100',
                     'escape' => false,
                 )
             );
             ?>
         </div>
-
     </div>
 </div>
 

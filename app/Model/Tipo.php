@@ -2,26 +2,15 @@
 
 class Tipo extends AppModel
 {
+    /**
+     * @var TABLA DE LA BASE DE DATOS A UTILIZAR
+     */
     public $useTable = 'tipos';
-    public $displayField = 'nombre';
 
     /**
-     * funcion para obtener los datos de los tipos de empresa en forma de lista
+     * @var CAMPO A MOSTRAR POR DEFECTO
      */
-    public function selecttipos(){
-        $data = $this->find('all',array(
-            'fields' => array(
-                'id','nombre'
-            ),
-        ));
-        foreach ($data as $dat){
-            $datos[$dat['Tipo']['id']] = $dat['Tipo']['nombre'] ;
-        }
-        return $datos;
-    }
-
-
-
+    public $displayField = 'nombre';
 
 
 

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="page-header">
-        <h1 class="titulo ta-center">¿ CUÁL ES SU PERFIL ?</h1>
+        <h1 class="f-size-2 color-principal ta-center">¿ CUÁL ES SU PERFIL ?</h1>
     </div>
 </div>
 <div class="row centrar">

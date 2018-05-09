@@ -55,8 +55,8 @@
                 <?php echo $this->Html->link(
                     '¿He olvidado mi contraseña?',
                     array(
-                        'controller' => 'Registro',
-                        'action' => 'index',
+                        'controller' => 'usuarios',
+                        'action' => 'password',
                     ),
                     array(
                         'class' => 'enlace'

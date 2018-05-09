@@ -22,7 +22,7 @@
 App::uses('Model', 'Model');
 
 /**
- * Application model for Cake.
+ * Application model for Cake - MODELO PRINCIPAL DE LA APLICACION
  *
  * Add your application-wide methods in the class below, your models
  * will inherit them.

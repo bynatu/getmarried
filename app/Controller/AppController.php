@@ -20,25 +20,27 @@
  */
 
 App::uses('Controller', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 
 /**
- * Application Controller
+ * Application Controller - CONTROLADOR PRINCIPAL DE LA APLICACION
  *
  * Add your application-wide methods in the class below, your controllers
  * will inherit them.
  *
- * @package		app.Controller
- * @link		https://book.cakephp.org/2.0/en/controllers.html#the-app-controller
+ * @package        app.Controller
+ * @link        https://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller {
+class AppController extends Controller
+{
 
-    /*HELPERS PARA DESARROLLO RAPIDO DE HTML DESDE CAKEPHP*/ 
+    /*HELPERS PARA DESARROLLO RAPIDO DE HTML DESDE CAKEPHP*/
     public $helpers = array(
         'Html',
         'Form',
         'Flash',
     );
-    
+
     /**
      * COMPONENTES QUE VA A UTILIZAR LA APLICACION
      */
@@ -84,21 +86,24 @@ class AppController extends Controller {
     /**
      * FUNCION PARA INDICAR EL INICIO DE UNA TRANSACCION SQL
      */
-    public function begin(){
+    public function begin()
+    {
         $this->{$this->modelClass}->getDataSource()->begin();
     }
 
     /**
      * FUNCION PARA CONFIRMAR LOS CAMBIOS DE LA TRANSACION SQL
      */
-    public function commit(){
+    public function commit()
+    {
         $this->{$this->modelClass}->getDataSource()->commit();
     }
-    
+
     /**
-     * FUNCION PARA AL INICIAR SESION COMPORBAR LOS CAMPOS QUE QUE SE HAN DE VALIDAR
+     * FUNCION PARA AL INICIAR SESION Y COMPROBAR LOS CAMPOS QUE QUE SE HAN DE VALIDAR
      */
-    function beforeFilter() {
+    function beforeFilter()
+    {
         $this->Auth->userModel = 'Usuario';
         $this->Auth->fields = array('username' => 'email', 'password' => 'password');
         $this->Auth->loginAction = array('admin' => false, 'controller' => 'usuarios', 'action' => 'login');
@@ -106,9 +111,11 @@ class AppController extends Controller {
     }
 
     /**
-     * FUNCION PARA MEJORAR LA PAGINACION DEL COMPONENTE PAGINATOR
+     * FUNCION PARA MEJORAR LA PAGINACION DEL COMPONENTE PAGINATOR,
+     * Y HACER MAS FACIL LA POSIBILIDAD DE CREAR JOINS EN LOS CAMPOS A PAGINAR
      */
-    public function paginar($param_consulta, $condiciones, $limit = 5, $modelo = null) {
+    public function paginar($param_consulta, $condiciones, $limit = 5, $modelo = null)
+    {
         $this->Paginator = $this->Components->load(
             'Paginator',
             Hash::merge(
@@ -118,12 +125,12 @@ class AppController extends Controller {
                 )
             )
         );
-        if(isset($modelo)){
+        if (isset($modelo)) {
             return $this->Paginator->paginate($modelo, $condiciones);
-        }else{
+        } else {
             return $this->Paginator->paginate($condiciones);
         }
     }
 
-    
+
 }

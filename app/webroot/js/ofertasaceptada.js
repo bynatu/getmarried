@@ -1,27 +1,20 @@
-$(document).ready(function(){  
+$(document).ready(function () {
 
-    $('.ventana').click(function(event){
-        event.preventDefault();
+    $('.ventana').click(function () {
         data = {};
-        data.solicitud =  $(this).data('solicitud')
+        data.solicitud = $(this).data('solicitud')
         $.ajax({
-            method: "POST",
-            url: $(this).data('url'),
-            data: data
-          })
-            .done(function(data) {
+                method: "POST",
+                url: $(this).data('url'),
+                data: data
+            })
+            .done(function (data) {
                 oferta = JSON.parse(data);
-                swal({
-                    title: '<i>'+oferta['Empresa']['nombre']+'<i>',
-                    html:
-                      '<div class="ta-left"> <span class="negrita">SITIO WEB </span> <a href="'+oferta['Empresa']['www']+'" target="_black">'+oferta['Empresa']['www']+'</a></div>'+
-                      '<div class="ta-left"> <span class="negrita">PRESTACIÓN </span>' +oferta['Oferta']['prestacion']+'</div>'+
-                      '<div class="ta-left"> <span class="negrita">PRESUPUESTO </span>' +oferta['Oferta']['presupuesto']+' €'+'</div>',
-                    showCloseButton: true,
-                    showCancelButton: false,
-                    focusConfirm: false,
-                  })
-            });    
+                $('#myModalLabel').html(oferta['Empresa']['nombre']);
+                $('#www').html('Pagina web: <a href="'+oferta['Empresa']['www']+'" target="_blank">'+oferta['Empresa']['www']+'</a>');
+                $('#desc').html(oferta['Oferta']['prestacion']);
+                $('#precio').html('PRECIO: '+oferta['Oferta']['presupuesto']+'€');
+            });
     });
 
 });

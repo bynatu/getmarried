@@ -24,14 +24,14 @@
         </div>
         <div class="col-md-offset-3 col-md-6">
             <?php echo $this->Form->input(
-                    'Cliente.DNI',
-                    array(
-                        'type' => 'text',
-                        'name' => 'DNI',
-                        'label' => 'DNI',
-                        'class' => "form-control input-lg"
-                    )
-                ) ?>
+                'Cliente.DNI',
+                array(
+                    'type' => 'text',
+                    'name' => 'DNI',
+                    'label' => 'DNI',
+                    'class' => "form-control input-lg"
+                )
+            ) ?>
             <?php echo $this->Form->input(
                 'Cliente.nombre',
                 array(
@@ -69,15 +69,15 @@
                 )
             ) ?>
             <div class="col-xs-12 col-sm-6">
-            <?php echo $this->Form->input(
-                'Cliente.direccion',
-                array(
-                    'type' => 'text',
-                    'name' => 'direccion',
-                    'label' => 'Direccion',
-                    'class' => "form-control input-lg"
-                )
-            ) ?>
+                <?php echo $this->Form->input(
+                    'Cliente.direccion',
+                    array(
+                        'type' => 'text',
+                        'name' => 'direccion',
+                        'label' => 'Direccion',
+                        'class' => "form-control input-lg"
+                    )
+                ) ?>
             </div>
             <div class="col-xs-12 col-sm-3">
                 <?php echo $this->Form->input(
@@ -116,7 +116,7 @@
                 array(
                     'type' => 'text',
                     'name' => 'localidad',
-                    'label' => 'Localidad',
+                    'label' => 'Provincia',
                     'class' => "form-control input-lg"
                 )
             ) ?>
@@ -131,9 +131,11 @@
                     'class' => "form-control input-lg"
                 )
             ) ?>
+            <div class="m-top-1 g-recaptcha" data-sitekey="6LfuzlQUAAAAAKEuYsqYvzBaUKpiDnJ9v2mCjbVg"></div>
+
         </div>
-        <div class="m-0-auto">
-            <button type="submit" class="btn btn-success btn-lg btnaccion">REGISTRARSE </button>
+        <div class="margin-0-auto nofloat">
+            <button type="submit" class="btn btn-success btn-lg btnaccion">REGISTRARSE</button>
         </div>
 
         <?php echo $this->Form->end() ?>

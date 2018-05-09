@@ -1,13 +1,21 @@
 <?php
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
-class Usuario extends AppModel {
-    
+class Usuario extends AppModel
+{
+
+    /**
+     * @var TABLA DE LA BASE DE DATOS A UTILIZAR
+     */
     public $table = 'usuarios';
+
+    /**
+     * @var CAMPO A MOSTRAR POR DEFECTO
+     */
     public $displayField = 'email';
 
     /**
-     * campos a validar antes de guaradar o ediatar los datos de un usuario
+     * FUNCION PARA VALIDAR LOS DATOS ANTES DE GUARDAR LOS CAMBIOS
      */
     public $validate = array(
         'email' => array(
@@ -17,7 +25,7 @@ class Usuario extends AppModel {
                 'message' => 'El email es obligatorio'
             ),
             'maxLength' => array(
-                'rule' => array('maxLength','50'),
+                'rule' => array('maxLength', '50'),
                 'message' => 'El email es demasiado largo',
             ),
             'isUnique' => array(
@@ -41,11 +49,14 @@ class Usuario extends AppModel {
             ),
         ),
     );
-    
+
     /**
-     * filtros antes de realizar el guardado, en este caso cifrar las contraseñas
+     * FILTROS QUE SE REALIZARAN ANTES DE GUARDAR LOS CAMBIOS
+     * @param array $options
+     * @return bool
      */
-    public function beforeSave($options = array()) {
+    public function beforeSave($options = array())
+    {
         if (!empty($this->data[$this->alias]['password'])) {
             $passwordHasher = new SimplePasswordHasher(array('hashType' => 'sha256'));
             $this->data[$this->alias]['password'] = $passwordHasher->hash(
@@ -56,10 +67,14 @@ class Usuario extends AppModel {
     }
 
     /**
-     * funcion para dar de alta un nuevo usuario
-     * @param $usuario = datos del usuario
+     * FUNCION PARA AÑADIR UN NUEVO USUARIO
+     * @param $usuario - DATOS DEL USUARIO
+     * @return bool|mixed - RETURN TRUE SI SE REALIZAN LOS CAMBIOS O FALSE SI OCURRE ALGUN PROBLEMA
+     * @throws Exception - SQLEXCEPTION
      */
-    public function nuevo($usuario){
+    public function nuevo($usuario)
+    {
+        //CAMPOS
         $fields = array(
             'Usuario' => array(
                 'email',
@@ -67,12 +82,33 @@ class Usuario extends AppModel {
                 'rol',
             )
         );
+        //FUNCION PARA CREAR REGISTRO
         $this->create();
+
+        //GUARDAMOS LOS CAMBIOS
         if ($tmp = $this->save($usuario, $fields)) {
             return $tmp;
         }
         return false;
 
-        }
-
     }
+
+
+    public function obtenermail($usuario_id)
+    {
+        $user = $this->findById($usuario_id);
+        return $user['Usuario']['email'];
+    }
+
+
+    public function editar($usuario)
+    {
+        $user = $this->findById($usuario['id']);
+        $user['Usuario']['email'] = $usuario['email'];
+        $user['Usuario']['password'] = $usuario['password'];
+        $tmp = $this->save($user);
+        return $tmp;
+    }
+
+
+}

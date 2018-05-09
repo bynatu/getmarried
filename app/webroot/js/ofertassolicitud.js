@@ -1,6 +1,7 @@
-$(document).ready(function(){  
+$(document).ready(function () {
 
-    $('.aceptado').click(function(){
+    $('.aceptado').click(function () {
+        $url = ($(this).data('url'));
         swal({
             title: '¿Seguro que desea aceptar esta oferta?',
             text: "Se eliminaran todas las ofertas restantes y se cerrara la solicitud",
@@ -9,57 +10,56 @@ $(document).ready(function(){
             confirmButtonColor: 'green',
             cancelButtonColor: 'red',
             confirmButtonText: 'ACEPTAR',
-            cancelButtonText: 'CANCELAR',
-          }).then((result) => {
+            cancelButtonText: 'CANCELAR'
+        }).then((function (result) {
             if (result.value) {
                 $.ajax({
-                    method: "POST",
-                    url: $(this).data('url'),
-                  })
-                    .done(function(data) {
-                        swal(
-                            'Aceptado',
-                            'Oferta aceptada se le notificara a la empresa',
-                            'success'
-                        ).then((result) => {
-                            if (result.value) {
-                                window.location.href = data;
-                            }
-                        });
-                    });
-              }
-          })
+                    method: "GET",
+                    url: $url
+                }).done(function (data) {
+                    swal(
+                        'Aceptado',
+                        'Oferta aceptada se le notificara a la empresa',
+                        'success'
+                    ).then((function (result) {
+                        if (result.value) {
+                            window.location.href = data;
+                        }
+                    }));
+                });
+            }
+        }));
     });
 
-    $('.alerta').click(function(){
+    $('.alerta').click(function () {
+        $url = ($(this).data('url'));
         swal({
             title: '¿Seguro que desea borrar esta oferta?',
-            text: "",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: 'green',
             cancelButtonColor: 'red',
             confirmButtonText: 'ACEPTAR',
-            cancelButtonText: 'CANCELAR',
-          }).then((result) => {
+            cancelButtonText: 'CANCELAR'
+        }).then((function (result) {
             if (result.value) {
                 $.ajax({
-                    method: "POST",
-                    url: $(this).data('url'),
-                })
-                .done(function(data) {
+                    method: "GET",
+                    url: $url
+                }).done(function (data) {
                     swal(
                         'Eliminar',
                         'Su oferta ha sido eliminada',
                         'success'
-                    ).then((result) => {
+                    ).then((function (result) {
                         if (result.value) {
                             window.location.href = data;
                         }
-                    });
+                    }));
                 });
             }
-          })
+        }));
     });
+
 
 });

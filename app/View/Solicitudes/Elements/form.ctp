@@ -1,4 +1,4 @@
-<?php echo $this->Form->create();?>
+<?php echo $this->Form->create(); ?>
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <?php
@@ -21,7 +21,7 @@
                     'type' => 'select',
                     'name' => 'servicio',
                     'label' => 'Solicitud',
-                    'options'=> $options,
+                    'options' => $options,
                     'class' => "form-control input-lg"
                 )
             ) ?>
@@ -62,9 +62,36 @@
                 )
             ) ?>
         </div>
-        </div>
-        <div class="centrar">
-            <button type="submit" class="btn btn-success btn-lg btnaccion">ACEPTAR</button>
-            <button type="reset" class="btn btn-danger btn-lg btnaccion">CANCELAR</button>
-        </div>
-    <?php $this->Form->end();?>
+    </div>
+    <div class="centrar">
+        <button type="submit" class="btn btn-success btn-lg btnaccion">ACEPTAR</button>
+        <?php
+        if (isset($solicitud)) {
+            echo $this->Html->link(
+                'CANCELAR',
+                array(
+                    'controller' => 'solicitudes',
+                    'action' => 'detalles',
+                    $solicitud
+                ),
+                array(
+                    'type'=>'button',
+                    'class' => 'btn btn-danger btn-lg btnaccion'
+                )
+            );
+        } else {
+            echo $this->Html->link(
+                'CANCELAR',
+                array(
+                    'controller' => 'clientes',
+                    'action' => 'index'
+                ),
+                array(
+                    'type'=>'button',
+                    'class' => 'btn btn-danger btn-lg btnaccion'
+                )
+            );
+        }
+        ?>
+    </div>
+<?php $this->Form->end(); ?>

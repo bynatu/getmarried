@@ -68,37 +68,37 @@
                     'class' => "form-control input-lg"
                 )
             ) ?>
-                <div class="col-xs-12 col-sm-6">
-                    <?php echo $this->Form->input(
-                        'Empresa.direccion',
-                        array(
-                            'type' => 'text',
-                            'name' => 'direccion',
-                            'label' => 'Direccion',
-                            'class' => "form-control input-lg"
-                        )
-                    ) ?>
-                </div>
-                <div class="col-xs-12 col-sm-3">
-                    <?php echo $this->Form->input(
-                        'Empresa.numero',
-                        array(
-                            'type' => 'text',
-                            'name' => 'numero',
-                            'class' => "form-control input-lg col-xs-3"
-                        )
-                    ) ?>
-                </div>
-                <div class="col-xs-12 col-sm-3">
-                    <?php echo $this->Form->input(
-                        'Empresa.piso',
-                        array(
-                            'type' => 'text',
-                            'name' => 'piso',
-                            'class' => "form-control input-lg col-xs-3"
-                        )
-                    ) ?>
-                </div>
+            <div class="col-xs-12 col-sm-6">
+                <?php echo $this->Form->input(
+                    'Empresa.direccion',
+                    array(
+                        'type' => 'text',
+                        'name' => 'direccion',
+                        'label' => 'Direccion',
+                        'class' => "form-control input-lg"
+                    )
+                ) ?>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <?php echo $this->Form->input(
+                    'Empresa.numero',
+                    array(
+                        'type' => 'text',
+                        'name' => 'numero',
+                        'class' => "form-control input-lg col-xs-3"
+                    )
+                ) ?>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <?php echo $this->Form->input(
+                    'Empresa.piso',
+                    array(
+                        'type' => 'text',
+                        'name' => 'piso',
+                        'class' => "form-control input-lg col-xs-3"
+                    )
+                ) ?>
+            </div>
             <?php echo $this->Form->input(
                 'Empresa.ciudad',
                 array(
@@ -119,11 +119,11 @@
                     'class' => "form-control input-lg"
                 )
             ) ?>
-                <div class="g-recaptcha" data-sitekey="6LfuzlQUAAAAAKEuYsqYvzBaUKpiDnJ9v2mCjbVg"></div>
+            <div class="m-top-1 g-recaptcha" data-sitekey="6LfuzlQUAAAAAKEuYsqYvzBaUKpiDnJ9v2mCjbVg"></div>
 
         </div>
-        <div class="col-xs-offset-3 col-xs-6 text-center">
-            <button type="submit" class="btn btn-success btn-lg btnaccion">REGISTRARSE </button>
+        <div class="margin-0-auto nofloat">
+            <button type="submit" class="btn btn-success btn-lg btnaccion">REGISTRARSE</button>
         </div>
 
         <?php echo $this->Form->end() ?>

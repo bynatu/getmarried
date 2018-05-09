@@ -1,10 +1,13 @@
 <?php
 
-Class RegistroController extends AppController{
+Class RegistroController extends AppController
+{
+
     /**
      * FUNCIONES A LAS QUE PUEDE ACCEDER SIN NECESIDAD DE LOGUEARSE
      */
-    public function beforeFilter(){
+    public function beforeFilter()
+    {
         $this->Auth->allow(array(
             'index',
         ));
@@ -12,7 +15,8 @@ Class RegistroController extends AppController{
     }
 
     //FUNCION INICIAL
-    public function index(){
+    public function index()
+    {
 
     }
 }

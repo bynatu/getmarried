@@ -1,6 +1,7 @@
 <?php
 
-Class InicioController extends AppController{
+Class InicioController extends AppController
+{
     /**
      * MODELOS A UTILIZAR
      */
@@ -11,7 +12,8 @@ Class InicioController extends AppController{
     /**
      * FUNCIONES CON ACCESO SIN LOGUEO
      */
-    public function beforeFilter(){
+    public function beforeFilter()
+    {
         $this->Auth->allow(array(
             'index',
         ));
@@ -21,14 +23,13 @@ Class InicioController extends AppController{
     /**
      * FUNCION PARA CARGAR LOS DATOS DE LOS TIPOS DE EMPRESAS
      */
-    public function index() {
+    public function index()
+    {
         $tipos = $this->Tipo->find('all');
         $this->set(array(
-           'tipos' => $tipos
+            'tipos' => $tipos
         ));
     }
-
-
 
 
 }
